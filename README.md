@@ -1,4 +1,3 @@
-# LearningPython
-# 这个repo内的程序都是实践自《python基础教程》
+# 实践自edX的MIT课程《 Introduction to Computer Science and Programming in Python》
 =================目录=================
-1、
+1、汉诺塔
