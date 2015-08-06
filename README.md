@@ -1,3 +1,3 @@
-# 实践自edX的MIT课程《 Introduction to Computer Science and Programming in Python》
+MIT课程 <计算机科学和Python编程导论》
 =================目录=================
 1、汉诺塔
