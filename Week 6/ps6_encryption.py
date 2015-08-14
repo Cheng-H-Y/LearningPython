@@ -39,7 +39,14 @@ def isWord(wordList, word):
     """
     word = word.lower()
     word = word.strip(" !@#$%^&*()-_+={}[]|\\:;'<>?,./\"")
-    return word in wordList
+
+    if word.split(' ')[0] in wordList:
+        return True
+    elif word.split(',')[0] in wordList:
+        return True
+    else:pass
+    return False
+
 
 def randomWord(wordList):
     """
@@ -108,7 +115,6 @@ def buildCoder(shift):
         coder_dict[ uper[i] ]=uper[(i + shift) % 26]
     return coder_dict
 
-
 def applyCoder(text, coder):
     """
     Applies the coder to the text. Returns the encoded text.
@@ -124,8 +130,6 @@ def applyCoder(text, coder):
         else:new +=text[i]
 
     return new
-
-
 
 def applyShift(text, shift):
     """
@@ -153,10 +157,18 @@ def findBestShift(wordList, text):
     text: string
     returns: 0 <= int < 26
     """
-    ### TODO
-    return "Not yet implemented." # Remove this comment when you code the function
+    ###
+    best = 0
+    for n in range(26):
+        word_try = applyShift(text, n)
+        if isWord(wordList,word_try):
+            return n
+        else:pass
+    return 0
 
-def decryptStory():
+
+
+def decryptStory(secret):
     """
     Using the methods you created in this problem set,
     decrypt the story given by the function getStoryString().
@@ -165,8 +177,8 @@ def decryptStory():
 
     returns: string - story in plain text
     """
-    ### TODO.
-    return "Not yet implemented." # Remove this comment when you code the function
+    bestShift = findBestShift(wordList,secret)
+    return applyShift(secret, bestShift)
 
 #
 # Build data structures used for entire session and run encryption
@@ -176,7 +188,13 @@ if __name__ == '__main__':
     # To test findBestShift:
     wordList = loadWords()
     s = applyShift('Hello, world!', 8)
-    bestShift = findBestShift(wordList, s)
+    bestShift = findBestShift(wordList, 'Tkum')
+    print bestShift
+    print applyShift('Tkum', bestShift)
+    print getStoryString()
+    print decryptStory(getStoryString())
+    # print decryptStory(getStoryString())
     # assert applyShift(s, bestShift) == 'Hello, world!'
     # To test decryptStory, comment the above four lines and uncomment this line:
     #    decryptStory()
+
